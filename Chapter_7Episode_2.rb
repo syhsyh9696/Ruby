@@ -15,3 +15,10 @@ def foo3(a, *b, c) #"*变量名"只能在参数中定义一次
 	p [a, b, c]
 end
 foo3(1, 2, 3, 4, 5)
+
+def foo(arg)
+	arg
+end
+p foo({"a"=>1, "b"=>2})
+p foo("a"=>1, "b"=>2)
+
