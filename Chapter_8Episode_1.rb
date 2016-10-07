@@ -39,5 +39,22 @@ p billy.name
 class HelloWorld_ano
 	# attr_reader :name 只读(定义name方法)
 	# attr_writer :name 只写
-	attr_accessor :name #读写 
+	attr_accessor :tname #读写 
+	def initialize(myname="Billy")
+		tname = myname
+	end
+
+	def greet
+		p "Hi, I am #{name}"
+		#p "Hi, I am #{self.name}" #也可以写为#{name} 如果省略了接受者 默认是self
+	end
+
+	def modify
+		self.tname = "Ruby"
+	end
+	
 end
+test = HelloWorld_ano.new
+test.greet
+test.modify
+test.greet
