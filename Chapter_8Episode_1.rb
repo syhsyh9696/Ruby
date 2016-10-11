@@ -18,7 +18,8 @@ class HelloWorld
 		p "Hello world, I'm #{@name}"
 	end
 
-	def name #ruby中 对象外部不能直接访问实例变量和对实力变量赋值 必须借用这样的方法或者attr_
+	def name #ruby中 对象外部不能直接访问实例变量和对实例
+	         #变量赋值 必须借用这样的方法或者attr_
 		@name
 	end
 
@@ -39,7 +40,7 @@ p billy.name
 class HelloWorld_ano
 	# attr_reader :name 只读(定义name方法)
 	# attr_writer :name 只写
-	attr_accessor :tname #读写 
+	attr_accessor :tname #读写
 	def initialize(myname="Billy")
 		tname = myname
 	end
@@ -52,7 +53,7 @@ class HelloWorld_ano
 	def modify
 		self.tname = "Ruby"
 	end
-	
+
 end
 test = HelloWorld_ano.new
 test.greet
