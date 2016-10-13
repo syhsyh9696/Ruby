@@ -7,3 +7,4 @@
 
 解决方法 终端运行
 >$ source ~/.rvm/scripts/rvm
+> 或者加入到.bashrc/.zshrc
