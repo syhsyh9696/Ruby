@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'net/http'
 require 'json'
 require 'pp'
@@ -9,23 +11,19 @@ def getToken
         p "Wrong student number!"
         return nil
     end
-    temp = "http://seat.ujn.edu.cn/rest/auth?username=#{stuNum}&password=#{stuPwd}"
-    url = URI(temp)
-    json = Net::HTTP.get(url)
-    obj = JSON.parse(json)
-    if obj["status"] == "success"
-        return obj["data"]["token"]
+    url = "http://seat.ujn.edu.cn/rest/auth?username=#{stuNum}&password=#{stuPwd}"
+    json = JSON.parse(Net::HTTP.get(URI(url)))
+    if json["status"] == "success"
+        return json["data"]["token"]
     else
         p "Connection wrong!"
     end
 end
 
 def checkToken
-    temp = "http://seat.ujn.edu.cn/rest/v2/user/reservations?token=#{getToken}"
-    url = URI(temp)
-    json = Net::HTTP.get(url)
-    obj = JSON.parse(json)
-    if obj["status"] == "success"
+    url = "http://seat.ujn.edu.cn/rest/v2/user/reservations?token=#{getToken}"
+    json = JSON.parse(Net::HTTP.get(URI(url)))
+    if json["status"] == "success"
         return true
     else
         return false
@@ -33,12 +31,10 @@ def checkToken
 end
 
 def getBuildingsInfo
-    temp = "http://seat.ujn.edu.cn/rest/v2/room/stats2/2?token=#{getToken}"
-    url = URI(temp)
-    json = Net::HTTP.get(url)
-    obj = JSON.parse(json)
-    if obj["status"] == "success"
-        obj["data"].each do |room|
+    url = "http://seat.ujn.edu.cn/rest/v2/room/stats2/2?token=#{getToken}"
+    json = JSON.parse(Net::HTTP.get(URI(url)))
+    if json["status"] == "success"
+        json["data"].each do |room|
             p "ID:#{room["roomId"]} #{room["room"]} 楼层:#{room["floor"]} 剩余:#{room["free"]}"
         end
     else
@@ -47,5 +43,12 @@ def getBuildingsInfo
 end
 
 def getSeatInfo
-    begintimeurl
+    temp = "http://seat.ujn.edu.cn/rest/v2/startTimesForSeat/#{seat}/#{date}/#{getToken}"
+    beginurl = URI(temp)
+    beginjson = Net::HTTP.get(beginurl)
+    obj = JSON.parse(beginjson)
+    startlist = obj["data"]["startTimes"]
+
+    hour = 480
+    
 end
