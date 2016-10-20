@@ -50,5 +50,7 @@ def getSeatInfo
     startlist = obj["data"]["startTimes"]
 
     hour = 480
-    
+
 end
+
+p getToken  
