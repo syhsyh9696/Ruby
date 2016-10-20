@@ -1,4 +1,5 @@
 # encoding: utf-8
+# 抓取@XiaoaiBot(Creat by @drakeet)图片
 require 'open-uri'
 
 base_url = 'http://7xqh4i.com1.z0.glb.clouddn.com/pic'
