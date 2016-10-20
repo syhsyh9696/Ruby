@@ -9,9 +9,7 @@ base_url = 'http://7xqh4i.com1.z0.glb.clouddn.com/pic'
         next
     end
     fn = "#{i.to_s}.jpg"
-    p "#{fn} done!"
     url = base_url + "#{i.to_s}.jpg"
-
     open(url) do |io|
         f = File.new(fn, "w")
         if f
@@ -21,4 +19,5 @@ base_url = 'http://7xqh4i.com1.z0.glb.clouddn.com/pic'
         end
         f.close()
     end
+    p "#{fn} done!"
 end
