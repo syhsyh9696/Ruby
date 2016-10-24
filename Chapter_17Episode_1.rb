@@ -11,9 +11,13 @@ a   追加模式 文件不存在就创建
 a+  用读取/追加模式打开文件 文件不存在就创建新的文件
 =end
 
-File.open("name", "r") do |io|
+File.open("name", "r") do |io| #用块方法传递的话可以不使用File.close()
     while line = io.gets
         line.chomp!
-        p line
+        p io.lineno
+        #对line的处理
     end
+    p io.eof? #检查是否输入完毕
 end
+# data = File.read("name")
+# 使用read方法可以一次性读取文件file的内容
