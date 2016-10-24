@@ -6,13 +6,13 @@ File.open("name", "r") do |io|
         line.chomp!
         if (io.lineno % 18) == 4
             p line + "            [Done]"
+            io_temp << line << " "
+        elsif (io.lineno % 18) == 6
+            io_temp << line << " "
+        elsif (io.lineno % 18) == 10
+            io_temp << line << " "
+        elsif (io.lineno % 18) == 12
             io_temp << line << "\n"
-        #elsif (io.lineno % 18) == 6
-            #io_temp << line << "\t"
-        #elsif (io.lineno % 18) == 10
-            #io_temp << line << "\t"
-        #elsif (io.lineno % 18) == 0
-            #io_temp << line << "\n"
         end
     end
 end
