@@ -7,7 +7,7 @@ TOKEN = '299913435:AAH0acebPnG2CuaXNU9mv2jwaKgprDbGzuQ'
 
 def randomnum()
     seed = Random.rand(24370) + 1
-    File.open("stunum.txt", "r") do |io|
+    File.open("student.ini", "r") do |io|
         while line = io.gets
             line.chomp!
             column = line.split()
@@ -19,10 +19,23 @@ def randomnum()
     return nil
 end
 
+def randomgirl()
+    seed = Random.rand(12923) + 1
+    File.open("student_girl.ini", "r") do |io|
+        while line = io.gets
+            line.chomp!
+            if io.lineno == seed
+                return line
+            end
+        end
+    end
+    return nil
+end
+
 def help()
     temp = ("/start - Start this bot\n" +
             "/stop - Stop this bot\n" +
-            "/random - Get random picture and information\n" +
+            "/random - Get random picture and profile\n" +
             "/num - Get specify picture (/num 20130000000)")
 end
 
@@ -47,6 +60,18 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
             #bot.api.send_message(chat_id: message.chat.id, text: "#{line}")
             bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
             bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}", caption: "#{line[0]}>>#{line[1]}>>#{line[2]}>>#{line[3]}")
+        when '/randomgirl'
+            line = randomgirl()
+            fn = "#{line.to_s}.jpg"
+            url = base_url + "#{line[1..4]}/" + fn[1..15]
+            bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
+            bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
+        when '/randomgirl@ujnphotobot'
+            line = randomgirl()
+            fn = "#{line.to_s}.jpg"
+            url = base_url + "#{line[1..4]}/" + fn[1..15]
+            bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
+            bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
         when '/num'
             if substr[1] == nil
                 bot.api.send_message(chat_id: message.chat.id, text: "Can't find the student number")
@@ -58,6 +83,8 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
             bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
         when '/help'
             bot.api.send_message(chat_id: message.chat.id, text: "#{help()}")
+        when '/doge'
+            bot.api.send_photo(chat_id: message.chat.id, )
         end
     end
 end
