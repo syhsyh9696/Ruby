@@ -36,7 +36,39 @@ def help()
     temp = ("/start - Start this bot\n" +
             "/stop - Stop this bot\n" +
             "/random - Get random picture and profile\n" +
+            "/randomgirl - Get random girl picture\n" +
             "/num - Get specify picture (/num 20130000000)")
+end
+
+def checkname(name)
+    array = Array.new
+    File.open("student.ini", "r") do |io|
+        while line = io.gets
+            line.chomp!
+            column = line.split()
+            if name == column[1]
+                array << column
+            end
+        end
+    end
+    if array.size != 0
+        return array
+    else
+        return nil
+    end
+end
+
+def checknumber(num)
+    File.open("student.ini", "r") do |io|
+        while line = io.gets
+            line.chomp!
+            temp = line.split()
+            if num == temp[0][1..11]
+                return true
+            end
+        end
+    end
+    return false
 end
 
 Telegram::Bot::Client.run(TOKEN) do |bot|
@@ -74,17 +106,56 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
             bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
         when '/num'
             if substr[1] == nil
+                bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
                 bot.api.send_message(chat_id: message.chat.id, text: "Can't find the student number")
                 next
             end
-            stunum = substr[1].to_s
-            url = base_url + "#{stunum[0..3]}/#{stunum}.jpg"
-            bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
-            bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
+            if checknumber(substr[1])
+                stunum = substr[1].to_s
+                url = base_url + "#{stunum[0..3]}/#{stunum}.jpg"
+                bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
+                bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
+            else
+                bot.api.send_chat_action(chat_id: message.chat.id, action: "typing")
+                bot.api.send_message(chat_id: message.chat.id, text: "Can't find the student number")
+                next
+            end
         when '/help'
             bot.api.send_message(chat_id: message.chat.id, text: "#{help()}")
         when '/doge'
-            bot.api.send_photo(chat_id: message.chat.id, )
+            url = base_url + "2014/20141222216.jpg"
+            bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
+        when '/ha'
+            bot.api.send_chat_action(chat_id: message.chat.id, action: "typing")
+            bot.api.send_sticker(chat_id: message.chat.id, sticker: "BQADBQADBgADqno2BgFR4Dylw9eQAg")
+            bot.api.send_message(chat_id: message.chat.id, text: "不要总想搞个大新闻")
+        when '/ha@ujnphotobot'
+            bot.api.send_chat_action(chat_id: message.chat.id, action: "typing")
+            bot.api.send_sticker(chat_id: message.chat.id, sticker: "BQADBQADBgADqno2BgFR4Dylw9eQAg")
+            bot.api.send_message(chat_id: message.chat.id, text: "不要总想搞个大新闻")
+        when '/name'
+            if substr[1] == nil
+                bot.api.send_message(chat_id: message.chat.id, text: "Can't find the student name")
+                next
+            end
+            line = checkname(substr[1])
+            if line == nil
+                bot.api.send_message(chat_id: message.chat.id, text: "Can't find the student name")
+            elsif line.size == 1
+                fn = "#{line[0][0].to_s}.jpg"
+                url = base_url + "#{line[0][0][1..4]}/" + fn[1..15]
+                bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
+                bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
+            elsif line.size > 1
+                bot.api.send_chat_action(chat_id: message.chat.id, action: "typing")
+                bot.api.send_message(chat_id: message.chat.id, text: "一共有#{line.size}个名字为<<#{substr[1]}>>的人")
+                line.size.times do |i|
+                    fn = "#{line[i][0].to_s}.jpg"
+                    url = base_url + "#{line[i][0][1..4]}/" + fn[1..15]
+                    bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
+                    bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
+                end
+            end
         end
     end
 end
