@@ -37,7 +37,8 @@ def help()
             "/stop - Stop this bot\n" +
             "/random - Get random picture and profile\n" +
             "/randomgirl - Get random girl picture\n" +
-            "/num - Get specify picture (/num 20130000000)")
+            "/num - Get specify picture (/num 20130000000)" +
+            "/name - Get specift picture ")
 end
 
 def checkname(name)
@@ -69,6 +70,22 @@ def checknumber(num)
         end
     end
     return false
+end
+
+def namelog(line, username, first_name, last_name)
+    time = Time.now
+    io = File.open("slectedname.log", "a")
+    io << "#{time.year}-#{time.month}-#{time.day} #{time.hour}:#{time.min}:#{time.sec}"
+    io << " /#{username} #{first_name}_#{last_name}/" << " #{line}\n"
+    io.close()
+end
+
+def numberlog(line, username, first_name, last_name)
+    time = Time.now
+    io = File.open("slectednumber.log", "a")
+    io << "#{time.year}-#{time.month}-#{time.day} #{time.hour}:#{time.min}:#{time.sec}"
+    io << " /#{username} #{first_name}_#{last_name}/" << " #{line}\n"
+    io.close()
 end
 
 Telegram::Bot::Client.run(TOKEN) do |bot|
@@ -115,6 +132,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
                 url = base_url + "#{stunum[0..3]}/#{stunum}.jpg"
                 bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
                 bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
+                numberlog(substr[1], message.from.username, message.from.first_name, message.from.last_name)
             else
                 bot.api.send_chat_action(chat_id: message.chat.id, action: "typing")
                 bot.api.send_message(chat_id: message.chat.id, text: "Can't find the student number")
@@ -146,6 +164,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
                 url = base_url + "#{line[0][0][1..4]}/" + fn[1..15]
                 bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
                 bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
+                namelog(substr[1], message.from.username, message.from.first_name, message.from.last_name)
             elsif line.size > 1
                 bot.api.send_chat_action(chat_id: message.chat.id, action: "typing")
                 bot.api.send_message(chat_id: message.chat.id, text: "一共有#{line.size}个名字为<<#{substr[1]}>>的人")
@@ -155,6 +174,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
                     bot.api.send_chat_action(chat_id: message.chat.id, action: "upload_photo")
                     bot.api.send_photo(chat_id: message.chat.id, photo: "#{url}")
                 end
+                namelog(substr[1], message.from.username, message.from.first_name, message.from.last_name)
             end
         end
     end
