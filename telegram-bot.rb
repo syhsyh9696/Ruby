@@ -90,6 +90,9 @@ end
 
 Telegram::Bot::Client.run(TOKEN) do |bot|
     bot.listen do |message|
+        if message.text == nil
+            next
+        end
         substr = message.text.split(" ")
         case substr[0]
         when '/start'
