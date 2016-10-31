@@ -90,10 +90,10 @@ end
 
 Telegram::Bot::Client.run(TOKEN) do |bot|
     bot.listen do |message|
-        if message.text == nil
+        substr = message.text.split(" ")
+        if substr[0] == nil
             next
         end
-        substr = message.text.split(" ")
         case substr[0]
         when '/start'
             bot.api.send_message(chat_id: message.chat.id, text: "Hello,#{message.from.first_name}")
