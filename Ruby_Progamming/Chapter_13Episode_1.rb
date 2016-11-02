@@ -17,4 +17,9 @@ lang1 = %i<Ruby Perl Python Scheme Pike REBOL>
 # 使用%i方法时 并非只可以使用() 也可以使用<> || // AA等任意字符 通常用() <> ||
 p lang1
 
-# 
+# 索引的使用方法
+alpha = ["a", "b", "c", "d", "e"]
+p alpha[1]
+p alpha[1..3]
+p alpha[1...3] #表示从alpha[1] - alpha[n-1]
+p alpha[1,3]
