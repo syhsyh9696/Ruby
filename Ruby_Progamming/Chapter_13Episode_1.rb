@@ -23,3 +23,4 @@ p alpha[1]
 p alpha[1..3]
 p alpha[1...3] #表示从alpha[1] - alpha[n-1]
 p alpha[1,3]
+p alpha[-1] #如果索引是负数的话 从后往前计数
