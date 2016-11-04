@@ -8,9 +8,9 @@ File.open("name", "r") do |io|
             p line + "            [Done]"
             io_temp << line << " "
         elsif (io.lineno % 18) == 6
-            io_temp << line << " "
-        elsif (io.lineno % 18) == 10
             io_temp << line << "\n"
+        #elsif (io.lineno % 18) == 10
+            #io_temp << line << "\n"
         #elsif (io.lineno % 18) == 12
             #io_temp << line << "\n"
         end
