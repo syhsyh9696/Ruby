@@ -5,7 +5,8 @@
 - Ruby_Programming Ruby基础教程笔记
 - Metaprogramming_Ruby 2 Ruby元编程相关           
 - Leetcode Ruby刷Leetcode
-- tools 自己写着玩的一堆东西
+- Tools 自己写着玩的一堆东西
+
 ---
 
 ## Leetcode
@@ -13,4 +14,4 @@
 |  #  |  Title  |  Solution  |  Difficulty  |  Status  |
 |-----|---------|------------|--------------|----------|
 |  1  |  [Two Sum]  |  Ruby  |  Easy  |  Done  |
-|  2  |  [Add Two Numbers]  |  ruby  |  Medium  |  Done  |
+|  2  |  [Add Two Numbers]  |  Ruby  |  Medium  |  Done  |
