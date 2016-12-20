@@ -1,4 +1,4 @@
-# encoding: utf-8
+hpter# encoding: utf-8
 # 限制方法的调用
 class AccTest
 	def pub
@@ -20,7 +20,7 @@ end
 class Point
 	attr_accessor :x, :y #定义存储器
 	protected :x=, :y= #把x, y设置为protected
-	
+
 	def initialize(x=0.0, y=0.0)
 		@x, @y = x, y
 	end
