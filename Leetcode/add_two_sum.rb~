@@ -1,8 +1,0 @@
-# encoding: utf-8
-class ListNode
-    attr_accessor :var, :next
-    def initialize(val)
-        @val = val
-        @next = nil
-    end
-end
