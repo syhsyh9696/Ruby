@@ -15,3 +15,4 @@
 |-----|---------|------------|--------------|----------|
 |  1  |  [Two Sum]  |  Ruby  |  Easy  |  Done  |
 |  2  |  [Add Two Numbers]  |  Ruby  |  Medium  |  Done  |
+|  3  |  [Length Of Longest Substring]  |  Ruby  |  Medium  |  Done  |
