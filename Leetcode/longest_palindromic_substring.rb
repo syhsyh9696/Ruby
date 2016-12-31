@@ -21,9 +21,16 @@ def longest_palindrome(s)
                 str = _long_palindrome_(s, idx, idx + 1)
                 maxstr = str if maxstr.size < str.size
             end
-
-            
         end
-        
+
+        offset += 1
     end
+end
+
+def _longest_palindrom_(s, lbound, ubound)
+    while lbound >= 0 && ubound < s.size &&s[lbound] == s[ubound]
+        lbound -= 1
+        rbound +=1
+    end
+    s[(lbound + 1)..(ubound - 1)] || ''
 end
