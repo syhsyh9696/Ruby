@@ -18,3 +18,5 @@
 |  3  |  [Length Of Longest Substring]  |  Ruby  |  Medium  |  Done  |
 |  6  |  [ZigZag Conversion]  |  Ruby  |  Medium  |  Done  |
 |  7  |  [Reverse Integer]  |  Ruby  |  Easy  |  Done  |
+|  9  |  [Palindrome Number]  |  Ruby  |  Easy  |  Done  |
+|  11 |  [Container With Most Water]  |  Ruby  |  Medium  |  Done  |
