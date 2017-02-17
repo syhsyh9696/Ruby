@@ -1,4 +1,4 @@
-#encoding: utf-8
+# encoding: utf-8
 # @param {Integer} x
 # @return {Integer}
 BIT = 32

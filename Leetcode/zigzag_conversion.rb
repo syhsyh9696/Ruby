@@ -1,4 +1,4 @@
-#encoding: utf-8
+# encoding: utf-8
 
 # @param {String} s
 # @param {Integer} num_rows
