@@ -20,3 +20,5 @@
 |  7  |  [Reverse Integer]  |  Ruby  |  Easy  |  Done  |
 |  9  |  [Palindrome Number]  |  Ruby  |  Easy  |  Done  |
 |  11 |  [Container With Most Water]  |  Ruby  |  Medium  |  Done  |
+|  12 |  [Integer To Roman]  |  Ruby  |  Medium  |  Done  |
+|  14 |  [Longest Common Prefix]  |  Ruby  |  Easy  |  Done  |
