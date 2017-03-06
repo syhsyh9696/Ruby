@@ -3,7 +3,7 @@
 require 'socket'
 
 hostname = '127.0.0.1'
-port = 21001
+port = 21010
 
 client = TCPSocket.open(hostname, port)
 client.puts "A-TEST"

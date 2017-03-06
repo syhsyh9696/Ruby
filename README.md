@@ -22,3 +22,6 @@
 |  11 |  [Container With Most Water]  |  Ruby  |  Medium  |  Done  |
 |  12 |  [Integer To Roman]  |  Ruby  |  Medium  |  Done  |
 |  14 |  [Longest Common Prefix]  |  Ruby  |  Easy  |  Done  |
+|  15 |  [3Sum]  |  Ruby  |  Medium  |  Done  |
+|  16 |  [3Sum Closest]  |  Ruby  |  Medium  |  Done  |
+|  17 |  [Letter Combinations of a Phone Number]  |  Ruby  |  Medium  |  Done  |
