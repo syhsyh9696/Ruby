@@ -31,6 +31,11 @@ module CloudHash
             when 'SET'
                 @storage[key] = value
             end
+            display
+        end
+
+        def display
+            puts @storage
         end
     end
 end

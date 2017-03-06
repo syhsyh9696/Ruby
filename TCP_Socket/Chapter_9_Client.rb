@@ -28,6 +28,6 @@ end
 
 CloudHash::Client.host = "localhost"
 CloudHash::Client.port = 21000
-p CloudHash::Client.set 'Sun', '1'
-p CloudHash::Client.get 'Sun'
-p CloudHash::Client.get 'v'
+puts CloudHash::Client.set 'Sun', '1'
+puts CloudHash::Client.get 'Sun'
+puts CloudHash::Client.get 'v'
