@@ -6,6 +6,7 @@
 - Metaprogramming_Ruby 2 Ruby元编程相关           
 - Leetcode Ruby刷Leetcode
 - Tools 自己写着玩的一堆东西
+- TCP Socket
 
 ---
 
@@ -25,3 +26,6 @@
 |  15 |  [3Sum]  |  Ruby  |  Medium  |  Done  |
 |  16 |  [3Sum Closest]  |  Ruby  |  Medium  |  Done  |
 |  17 |  [Letter Combinations of a Phone Number]  |  Ruby  |  Medium  |  Done  |
+|  19 |  [Remove Nth Node From End of List]  |  Ruby  |  Medium  |  Done  |
+|  20 |  [Valid Parentheses]  |  Ruby  |  Easy  |  Done  |
+|  21 |  [Merge Two Sorted Lists]  |  Ruby  |  Easy  |  Done  |
