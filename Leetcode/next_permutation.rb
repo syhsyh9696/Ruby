@@ -19,8 +19,10 @@ def next_permutation(nums)
         break if nums[i] < num
         j -= 1
     end
-
+    
     nums[i], nums[j] = nums[j], nums[i]
     nums[(i + 1)..-1] = nums[(i + 1)..-1].reverse!
+    # nums[(1 + 1)..-1] = nums[(1 + 1)..-1].sort!
     nil
 end
+
