@@ -21,7 +21,6 @@ def is_valid_sudoku(board)
             k = (i / 3) * 3 + (j / 3) 
             return false if sqrbucket[k][element]
             sqrbucket[k][element] = true
-            
         end
     end
     return true
