@@ -23,14 +23,15 @@ def insert stu_num
     if result == nil
         client.close; return nil
     end
-    
-    client.query("update info_old set department=\'#{result["stu_dept"]}\' where stu_num=#{stu_num.to_s}")
-    client.query("update info_old set id=\'#{result["stu_id"]}\' where stu_num=#{stu_num.to_s}")
+
+    client.query("update info_old set stu_class=\'#{result["stu_class"]}\' where stu_num=#{stu_num.to_s}")
+    # client.query("update info_old set department=\'#{result["stu_dept"]}\' where stu_num=#{stu_num.to_s}")
+    # client.query("update info_old set id=\'#{result["stu_id"]}\' where stu_num=#{stu_num.to_s}")
     client.close
 end
 
 client = client()
-result = client.query("select stu_num from info_old where stu_num like '22016%'")
+result = client.query("select stu_num from info_old where stu_class is null")
 client.close
 
 result = result.collect{ |x| x }
