@@ -8,7 +8,7 @@ require 'pp'
 def client()
     client = Mysql2::Client.new(:host => "127.0.0.1",
                                 :username => "root",
-                                :password => "grys003",
+                                :password => "student",
                                 :database => "student_dl")
 end
 
