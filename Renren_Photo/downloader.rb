@@ -23,5 +23,5 @@ def find_dir name, file_type
     end
 end
 
-find_dir('曹家悦', 'txt')
+find_dir('#{YOUR_NAME_HERE}', 'txt')
 
