@@ -2,12 +2,19 @@
 
 require 'nokogiri'
 require 'mechanize'
+require 'mysql2'
 require 'pp'
+
+def mysql
+    client = Mysql2::Client.new(:host => "127.0.0.1",
+                                :username => "root",
+                                :password => "default",
+                                :database => "student")
+
+end
 
 def get_id(number)
     ecampus = Mechanize.new {|agent|
-        agent.open_timeout = 5
-        agent.read_timeout = 5
         agent.user_agent = Mechanize::AGENT_ALIASES.values[rand(21)]
     }
     
@@ -27,7 +34,8 @@ def get_id(number)
     id_page = ecampus.get("http://ecampus.ujn.edu.cn/myecard.asp")
 
     doc = Nokogiri::HTML(id_page.body)
-
+    ecampus.get("http://ecampus.ujn.edu.cn/logout.asp")
+    
     io = File.open('./2017_id_num.txt', 'a+')
     doc.search('//td[@colspan="7"]/table/tr/td[2]/div').each do |row|
         io << row.text << "\n" if row.text != ""
