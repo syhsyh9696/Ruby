@@ -68,7 +68,7 @@ def insert_torrent_identifier
         thz.get url
         Nokogiri::HTML(thz.page.body).search('//p[@class="attnm"]/a').each do |item|
             # Torrent Hash: item.attributes["href"].value.split('=')[-1]
-            client.query("update hd_qb set torrent_identifier=\'#{item.attributes["href"].value.split('=')[-1]}\' where thz_id=\'#{hash["thz_id"]}\'")
+            client.query("update hd_qb set torrent_identifier=\'#{item.attributes["href"].value.split('=')[-1].gsub('%3D', '')}\' where thz_id=\'#{hash["thz_id"]}\'")
         end
         
     end

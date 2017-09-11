@@ -10,7 +10,6 @@ def mysql
                                 :username => "root",
                                 :password => "default",
                                 :database => "student")
-
 end
 
 def get_id(number)
