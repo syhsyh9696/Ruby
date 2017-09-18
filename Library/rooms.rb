@@ -6,10 +6,10 @@ require 'json'
 require 'pp'
 
 def mysql
-    client = Mysql2::Client.new(:host => "202.194.67.74",
+    client = Mysql2::Client.new(:host => "10.0.0.51",
                                 :username => "root",
                                 :password => "default",
-                                :database => "library")
+                                :database => "library-seats-api_development")
 end
 
 def authenticate
@@ -24,7 +24,7 @@ def rooms
     midurl = "mapBook/ajaxGetRooms?building="
     client = mysql()
     page = authenticate()
-    
+
     # building = 1 代表东校区
     # building = 2 代表西校区
     '1'.upto('2').each do |building|
@@ -35,5 +35,32 @@ def rooms
             end
         end
     end
+    client.close
 end
 
+def rooms_mobile
+  '1'.upto('2').each do |item|
+    url = "http://seat.ujn.edu.cn/rest/v2/room/stats2/#{item}?token="
+    page = authenticate()
+    client = mysql()
+
+    token = JSON.parse(page.page.body)['data']['token']
+    url = url + token
+    page.get url
+
+    JSON.parse(page.page.body)['data'].each do |e|
+      if item == '1'
+        client.query("insert into rooms(id, name, campus, floor, seats) values(#{e['roomId']}, '#{e['room']}', '济南大学东校区', '#{e['floor']}', '#{e['totalSeats']}')")
+      else
+        client.query("insert into rooms(id, name, campus, floor, seats) values(#{e['roomId']}, '#{e['room']}', '济南大学西校区', '#{e['floor']}', '#{e['totalSeats']}')")
+      end
+
+    end
+  end
+
+end
+
+
+def seats_mobile
+
+end
