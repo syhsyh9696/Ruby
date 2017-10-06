@@ -2,30 +2,23 @@
 # @param {Integer} n
 # @return {String}
 def count_and_say(n)
-    str = n.to_s; result = String.new; flag = nil
+    return '1' if n == 1
 
-    return "1" if str == "1"
-    0.upto(str.size - 1).each do |n|
-        next if n == flag
-            
-        if str[n] == "1" && str[n + 1] == "2"
-            result << "11"
+    str = '1'; n -= 1
+    n.times do
+        char, count, newstr = str[0], 1, newstr = ''
+        str[1..-1].each_char do |ch|
+            if char == ch
+                count += 1
+            else
+                newstr << count.to_s << char
+                char = ch
+                count = 1
+            end
         end
-
-        if str[n] == "1" && str[n + 1] == "1"
-            result << "21"
-            flag = n + 1; n = flag; next
-        end
-
-        if str[n] == "2" && str[n + 1] == "1"
-            result << "1221"
-            flag = n + 1; n = flag; next
-        end
-
-        if n == str.size - 1
-            result << "11"
-        end
+        newstr << count.to_s << char
+        str = newstr
     end
 
-    result
+    str
 end
