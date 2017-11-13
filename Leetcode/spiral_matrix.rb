@@ -34,3 +34,7 @@ private def _insert_(matrix, time)
     
     array
 end
+
+def spiral_order_other(matrix)
+    return matrix.flatten if matrix.size < 2 || matrix[0].size < 2
+end
