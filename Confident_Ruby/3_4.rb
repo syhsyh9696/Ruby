@@ -10,4 +10,12 @@ class Point
     def to_coords
         [x, y]
     end
+
+    def inspect
+        "#{x}:#{y}"
+    end
+
+    def to_point
+        self
+    end
 end
